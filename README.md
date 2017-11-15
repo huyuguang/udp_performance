@@ -25,8 +25,21 @@ RSS应该把queue数量设置为12（core number），而不是默认的16。
 关闭irqbalance，用affinity_hint指定queue和CPU的关系（sudo irqbalance -h exact -o）。
 
 https://blog.packagecloud.io/eng/2016/06/22/monitoring-tuning-linux-networking-stack-receiving-data/#ntuple-filtering-for-steering-network-flows
+
 https://blog.packagecloud.io/eng/2016/10/11/monitoring-tuning-linux-networking-stack-receiving-data-illustrated/
+
 https://blog.packagecloud.io/eng/2017/02/06/monitoring-tuning-linux-networking-stack-sending-data/
+
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/performance_tuning_guide/network-rss
+
 https://www.kernel.org/doc/Documentation/networking/scaling.txt
 
+https://events.linuxfoundation.org/sites/events/files/slides/LinuxConJapan2016_makita_160712.pdf
+
+还有一些方法可以进一步提高吞吐率：
+禁用GRO
+卸载iptables module
+禁用source IP validation
+禁用auditd
+最后应该能让吞吐率达到每秒600w~700w个包。
+不过后面这些改动对系统影响太大，除非是专用的内网设备，否则不值得这样折腾。
